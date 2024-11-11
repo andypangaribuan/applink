@@ -28,6 +28,8 @@ function help {
 }
 
 
+image_name=ghcr.io/andypangaribuan/applink
+
 
 #: update + check
 function run {
@@ -41,34 +43,64 @@ function run {
 
 #: build image using version from README.md
 function build {
+  arc=$(uname -m)
   ver=$(cat README.md | grep "^Version: " | sed -r 's/Version: //')
+  image="$image_name:$ver-$arc"
 
-  docker build --no-cache \
-    -f res/Dockerfile \
-    -t applink:$ver .
+  echo -e "\n\n"
+  echo "remove existing image"
+  docker rmi $image
+
+  echo -e "\n\n"
+  echo "perform docker build"
+  docker build --no-cache -f res/Dockerfile -t applink:$ver .  || { exit 1; }
+
+  echo -e "\n\n"
+  echo "image: $image"
+
+  echo -e "\n\n"
+  echo "perform cleansing"
 
   docker container prune -f
   docker image prune -f
   docker builder prune -f
 
   echo -e "\n\n"
-  echo "image: applink:$ver"
+  echo "push to github"
+  echo "docker push $image"
+
+  echo -e "\n\n"
+  echo "remove image"
+  echo "docker rmi $image"
 }
 
 
 #: save image using gzip
 function save {
+  arc=$(uname -m)
   ver=$(cat README.md | grep "^Version: " | sed -r 's/Version: //')
+  image="$image_name:$ver-$arc"
 
-  rm -rf applink-$ver.tar.gz
-  docker save applink:$ver | gzip > applink-$ver.tar.gz
+  rm -rf $image.tar.gz
+  docker save $image | gzip > applink-$ver-$arc.tar.gz
 }
 
 
 #: load image from tar.gz
 function load {
+  arc=$(uname -m)
   ver=$(cat README.md | grep "^Version: " | sed -r 's/Version: //')
-  docker load < applink-$ver.tar.gz
+  image="$image_name:$ver-$arc"
+
+  docker load < applink-$ver-$arc.tar.gz
+}
+
+
+#: docker clean
+function clean {
+  docker container prune -f
+  docker image prune -f
+  docker builder prune -f
 }
 
 
@@ -76,6 +108,6 @@ function load {
 
 # ___ do not change ___
 case $1 in
-"") help ;;
-*) "$@" ;;
+  "") help ;;
+  *) "$@" ;;
 esac
