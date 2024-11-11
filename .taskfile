@@ -47,7 +47,6 @@ function build {
   ver=$(cat README.md | grep "^Version: " | sed -r 's/Version: //')
   image="$image_name:$ver-$arc"
 
-  echo -e "\n\n"
   echo "remove existing image"
   docker rmi $image
 
