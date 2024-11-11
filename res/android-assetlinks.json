@@ -1,0 +1,32 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.crossdevx.app",
+      "sha256_cert_fingerprints": [
+        "XA:XB:XC"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.crossdevx.app.rc",
+      "sha256_cert_fingerprints": [
+        "YA:YB:YC"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.crossdevx.app.stg",
+      "sha256_cert_fingerprints": [
+        "ZA:ZB:ZC"
+      ]
+    }
+  }
+]
