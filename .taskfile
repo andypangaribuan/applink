@@ -52,7 +52,7 @@ function build {
 
   echo -e "\n\n"
   echo "perform docker build"
-  docker build --no-cache -f res/Dockerfile -t applink:$ver .  || { exit 1; }
+  docker build --no-cache -f res/Dockerfile -t $image .  || { exit 1; }
 
   echo -e "\n\n"
   echo "image: $image"

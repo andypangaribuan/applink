@@ -30,7 +30,7 @@ func Index(ctx server.FuseRContext, method, path, url string) any {
 	langPath := ""
 	pathLower := strings.ToLower(path)
 	for _, lang := range app.Env.AvailableLanguages {
-		if len(pathLower) > len(lang)+2 && pathLower[:4] == "/"+lang+"/" {
+		if len(pathLower) >= len(lang)+2 && pathLower[:4] == "/"+lang+"/" {
 			langPath = "/" + lang
 			path = path[3:]
 			break

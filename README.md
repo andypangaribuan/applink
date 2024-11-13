@@ -1,7 +1,7 @@
 # App Link
 
 Link to mobile app using deeplink.  
-Version: 1.0.0
+Version: 1.0.1
 
 
 Test using:
