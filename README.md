@@ -3,10 +3,10 @@
 Link to mobile app using deeplink.  
 Version: 1.0.1
 
-
 Test using:
-- https://branch.io/resources/aasa-validator/
-- https://app-site-association.cdn-apple.com/a/v1/{your-domain}
+
+- <https://branch.io/resources/aasa-validator/>
+- <https://app-site-association.cdn-apple.com/a/v1/{your-domain}>
 
 ***
 
@@ -27,7 +27,7 @@ If you fixed a bug or implemented a feature, please send a [`pull request`](http
 
 MIT License
 
-Copyright (c) 2024 Andy Pangaribuan
+Copyright (c) 2025 Andy Pangaribuan
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
